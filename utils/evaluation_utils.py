@@ -70,13 +70,13 @@ def depth_evaluation(gt_depths, pred_depths, savedir=None, pred_masks=None, min_
     mean_errors = np.array(errors).mean(0)
 
     print("\n  " + ("{:>8} | " * 7).format("abs_rel", "sq_rel", "rmse", "rmse_log", "a1", "a2", "a3"))
-    print(("&{: 8.3f}  " * 7).format(*mean_errors.tolist()) + "\\\\")
+    print(("&{: 8.4f}  " * 7).format(*mean_errors.tolist()) + "\\\\")
     print("\n-> Done!")
 
     if savedir is not None:
         with open(os.path.join(savedir, 'depth_evaluation.txt'), 'a') as f:
             f.writelines(("{:>8} | " * 7).format("abs_rel", "sq_rel", "rmse", "rmse_log", "a1", "a2", "a3") + '\n')
-            f.writelines(("&{: 8.3f}  " * 7).format(*mean_errors.tolist()) + "\\\\")
+            f.writelines(("&{: 8.4f}  " * 7).format(*mean_errors.tolist()) + "\\\\")
 
 def rgb_evaluation(gts, predicts, savedir):
     assert gts.max() <= 1
@@ -99,7 +99,7 @@ def rgb_evaluation(gts, predicts, savedir):
     for i in range(gts.shape[0]):
         gt = gts[i]
         predict = predicts[i]
-        ssim_list.append(skimage.measure.compare_ssim(gt, predict, multichannel=True))
+        ssim_list.append(skimage.metrics.structural_similarity(gt, predict, multichannel=True))
     ssim = np.array(ssim_list).mean()
 
     with open(os.path.join(savedir, 'rgb_evaluation.txt'), 'w') as f:

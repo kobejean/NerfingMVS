@@ -98,7 +98,7 @@ def train(args):
         if i_batch >= images_train.shape[0]:
             
             print("Shuffle depth data after an epoch!")
-            rand_idx = torch.randperm(images_train.shape[0])
+            rand_idx = torch.randperm(images_train.shape[0], device="cpu")
             images_train = images_train[rand_idx]
             depths_train = depths_train[rand_idx]
             depths_mask_train = depths_mask_train[rand_idx]

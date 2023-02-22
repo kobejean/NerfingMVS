@@ -105,6 +105,7 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
             lines += f_list.readlines()
             
     imgfiles = [os.path.join(imgdir, f.strip().replace('.jpg', '.png')) for f in lines]
+    # imgfiles = [os.path.join(imgdir, f.strip()) for f in lines]
     if poses.shape[-1] != len(imgfiles):
         print( 'Mismatch between imgs {} and poses {} !!!!'.format(len(imgfiles), poses.shape[-1]) )
         return
