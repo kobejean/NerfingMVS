@@ -28,12 +28,12 @@ def main(args):
     image_list_test = list(set(image_list_all) - set(image_list))
     nerf_rgbs = load_rgbs_np(image_list_test, nerf_path, 
                              use_cv2=False, is_png=True)
-    # gt_rgbs = load_rgbs_np(image_list_test, 
-    #                 os.path.join(args.datadir, 'images_{}'.format(args.factor)), 
-    #                 use_cv2=False, is_png=False)
     gt_rgbs = load_rgbs_np(image_list_test, 
                     os.path.join(args.datadir, 'images_{}'.format(args.factor)), 
-                    use_cv2=False, is_png=True)
+                    use_cv2=False, is_png=False)
+    # gt_rgbs = load_rgbs_np(image_list_test, 
+    #                 os.path.join(args.datadir, 'images_{}'.format(args.factor)), 
+    #                 use_cv2=False, is_png=True)
     print("nerf novel view synthesis evaluation:")
     with torch.no_grad():
         rgb_evaluation(gt_rgbs, nerf_rgbs, savedir=nerf_path)
