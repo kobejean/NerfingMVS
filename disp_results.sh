@@ -1,6 +1,9 @@
-RES_PATHS=$(echo ./logs/f8d08*/nerf/results)
-RES_PATHS=$(echo ./logs/f8d08*/nerf/results)
+# RES_PATHS=$(echo ./logs/f8d08*/nerf/results)
 # RES_PATHS=$(echo ./logs/f8*w0256/nerf/results)
+# RES_PATHS=$(echo ./logs/f4d08*/nerf/results)
+# RES_PATHS=$(echo ./logs/f4*w0256/nerf/results)
+# RES_PATHS=$(echo ./logs/*f4d08*/nerf/results)
+RES_PATHS=$(echo ./logs/scene*f4*w0256/nerf/results)
 
 for RES_PATH in $RES_PATHS
 do
